@@ -53,3 +53,60 @@ A short cooldown (`0.8 s`) after each switch stops the shape from flipping repea
 7. **Show** the HUD text and display the frame.
 
 ---
+
+## Getting Started
+
+### Requirements
+
+- Python 3.10+
+- A webcam
+- `mediapipe`, `opencv-python`, `numpy`
+- The `hand_landmarker.task` model file
+
+### Installation
+
+```bash
+git clone https://github.com/princyy7/gesture-shape-recognition.git
+cd gesture-shape-recognition
+python3 -m pip install mediapipe opencv-python numpy
+```
+
+### Get the model
+
+Download `hand_landmarker.task` from the [MediaPipe Hand Landmarker page](https://ai.google.dev/edge/mediapipe/solutions/vision/hand_landmarker) and place it in the same folder as the script.
+
+```text
+gesture-shape-recognition/
+├── hand_shapes_neon.py
+├── hand_landmarker.task
+└── README.md
+```
+
+### Run
+
+```bash
+python3 hand_shapes_neon.py
+```
+
+Hold up one hand in front of the camera. Press **`q`** to quit.
+
+---
+
+## Configuration
+
+All settings are constants at the top of `hand_shapes_neon.py`.
+
+| Setting | Default | What it does |
+|:--------|:--------|:-------------|
+| `SHAPES` | circle, square, triangle, star, pentagon | Shapes in the cycle |
+| `SIZE_SENSITIVITY` | `2.2` | How strongly pinch distance scales the size |
+| `MIN_SIZE` | `8` | Smallest shape size in pixels |
+| `MAX_SIZE_RATIO` | `0.60` | Largest size as a fraction of the frame's smaller side |
+| `SWITCH_COOLDOWN` | `0.8` | Seconds before another gesture can switch the shape |
+| `ENABLE_GLOW` | `True` | Turns the glow overlay on or off |
+| `SHAPE_COLOR` | `(255, 170, 40)` | Shape color |
+| `LANDMARK_COLOR` | `(255, 120, 20)` | Landmark point color |
+| `CONNECTION_COLOR` | `(255, 255, 140)` | Hand skeleton line color |
+| `TEXT_COLOR` | `(240, 240, 240)` | HUD text color |
+
+> Colors use OpenCV's **BGR** order, not RGB.
